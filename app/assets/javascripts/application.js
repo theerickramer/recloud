@@ -13,4 +13,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+
+//= require ./libraries/underscore
+//= require ./libraries/backbone
+
+//= require ./backbone/app.js
+//= require ./backbone/models/SoundModel
+//= require ./backbone/views/SoundView
+//= require ./backbone/collections/SoundCollection
+
+// require_tree .
