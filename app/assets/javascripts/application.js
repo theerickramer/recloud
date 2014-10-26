@@ -17,9 +17,12 @@
 //= require ./libraries/underscore
 //= require ./libraries/backbone
 
-//= require ./backbone/app.js
+//= require ./backbone/models/UserModel
 //= require ./backbone/models/SoundModel
 //= require ./backbone/views/SoundView
+//= require ./backbone/views/ModalView
 //= require ./backbone/collections/SoundCollection
+//= require ./backbone/app.js
+
 
 // require_tree .

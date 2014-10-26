@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
+  root 'session#index'
+
   resources :users do 
-    resources :tracks
+    resources :sounds
   end
 
   resources :users do 
