@@ -22,6 +22,7 @@
 //= require ./backbone/views/SoundView
 //= require ./backbone/views/ModalView
 //= require ./backbone/collections/SoundCollection
+// require ./backbone/router.js
 //= require ./backbone/app.js
 
 

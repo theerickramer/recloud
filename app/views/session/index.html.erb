@@ -9,17 +9,57 @@
 		<form action="/session" method="POST">
 			<input type="hidden" name="_method" value="delete">
 			<button class="login btn btn-primary"><span class="glyphicon glyphicon-user"></span>  Logout</button>
+		<h4 class="user"><%= @user.user_name %></h4>
 		</form>
 		<% end %>
 		</div> <!-- button -->
 	</div> <!-- header -->
 </div> <!-- row -->
-<div class="row">
+<!-- <div class="row">
 	<h3 class="user col-md-4"></h3>
-</div>
+</div> -->
 <div class="row">
-	
+	<div class="container-fluid surface">
+		<div class="surface_left col-md-4"></div>
+		<div class="surface_right col-md-4"></div>
+	</div>
 </div>
+
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+        
+        <div class='navbar-form navbar-left' role='search'>
+       	 <div class="input-group">
+	    			<input type="text" class="form-control search" name="search" autocomplete="off">
+   						<span class="input-group-addon">
+   							<a href='#search'><i class="glyphicon glyphicon-search"></i></a>
+							</span>
+					</div>
+				</div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+      	<li class="active"><a href="#cloud">
+      		<span class="navcloud glyphicon glyphicon-cloud"><span>
+      	<!-- 	<div class="sc_logo_container">
+	      		<img class="sc_logo" src="https://developers.soundcloud.com/assets/logo_big_white-bdafb3beba25fb86c2df365d05674e64.png">
+	      	</div> -->
+      		</a></li>
+      	<li><a href="#sounds"><span id="home">Sounds</span></a></li>
+        <li><a href="#sets">Sets</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<ul id="results"></ul>
 
 <!-- Modal -->
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

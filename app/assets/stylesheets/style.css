@@ -2,9 +2,35 @@ body {
 	margin: 20px;
 }
 
-.cloud {
-	top: 13px;
+.user {
+	text-align: right;
 }
+
+.cloud {
+	top: 10px;
+/*  -webkit-mask-image: url(http://f.cl.ly/items/131E0X1b1i0X1s263R00/a.png);
+
+  -moz-mask-image: url(http://f.cl.ly/items/131E0X1b1i0X1s263R00/a.png);
+
+  -o-mask-image: url(http://f.cl.ly/items/131E0X1b1i0X1s263R00/a.png);
+
+  mask-image: url(http://f.cl.ly/items/131E0X1b1i0X1s263R00/a.png);
+*/
+}
+
+.navcloud {
+	font-size: 17px;
+}
+
+/*.sc_logo_container{
+	height: 20px;
+	overflow: hidden;
+}
+
+.sc_logo {
+	height: 40px;
+	padding-bottom: 10px;
+}*/
 
 .logo {
 	font-size: 50px;
@@ -16,4 +42,11 @@ button.login {
 
 .error {
 	color: red;
+}
+
+.surface {
+	background-color: silver;
+	margin-left: 17px;
+	margin-right: 17px;
+	height: 300px;
 }
