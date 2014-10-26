@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   root 'session#index'
 
+  delete '/session' => 'session#destroy'
+
   resources :users do 
     resources :sounds
   end

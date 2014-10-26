@@ -29,10 +29,7 @@ RecloudApp.Views.ModalView = Backbone.View.extend({
 				console.log(response)
 				$('.user').text('Greetings ' + response.user_name + '!')
 			}
-
 		});
-		this.$el.find('input[name="user_name"]').val('');
-		this.$el.find('input[name="password"]').val('');
 	},
 
 	login: function(){
@@ -49,7 +46,8 @@ RecloudApp.Views.ModalView = Backbone.View.extend({
 				$('button.login').trigger('click')
 				$('div.error').text(response.status)
 			} else {
-				$('.user').text('Greetings ' + response.user_name + '!')
+				window.location.href = '/'
+				// $('.user').text('Greetings, ' + response.user_name + '!')
 			}
 		})
 	},

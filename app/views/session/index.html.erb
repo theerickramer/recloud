@@ -3,30 +3,41 @@
 		<h1 class="logo col-md-4"><span class="cloud glyphicon glyphicon-cloud"></span>Recloud</h1> 
 		<!-- Button trigger modal -->
 		<div class="auth col-md-1 col-md-offset-7">
-			<button class="login btn btn-primary" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-user"></span>  Log In</button>
-		</div> <!-- header -->
-	</div> <!-- row -->
-	<!-- <div class="row"> -->
-		<h5 class="user col-md-4"></h5>
-	<!-- </div> -->
+		<% if !session[:user_id] %>
+			<button class="login btn btn-primary" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-user"></span>  Login</button>
+		<% else %>
+		<form action="/session" method="POST">
+			<input type="hidden" name="_method" value="delete">
+			<button class="login btn btn-primary"><span class="glyphicon glyphicon-user"></span>  Logout</button>
+		</form>
+		<% end %>
+		</div> <!-- button -->
+	</div> <!-- header -->
+</div> <!-- row -->
+<div class="row">
+	<h3 class="user col-md-4"></h3>
+</div>
+<div class="row">
+	
+</div>
 
-	<!-- Modal -->
-	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					<h4 class="modal-title" id="myModalLabel">Login / Register</h4>
-				</div>
-				<div class="modal-body">
-					<input type="text" name="user_name" placeholder="Username">
-					<input type="text" name="password" placeholder="Password">
-					<div class="error"></div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="loginSubmit btn btn-default" data-dismiss="modal">Login</button>
-					<button type="button" class="register btn btn-primary" data-dismiss="modal">Register</button>
-				</div>
+<!-- Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title" id="myModalLabel">Login / Register</h4>
+			</div>
+			<div class="modal-body">
+				<input type="text" name="user_name" placeholder="Username">
+				<input type="text" name="password" placeholder="Password">
+				<div class="error"></div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="loginSubmit btn btn-default" data-dismiss="modal">Login</button>
+				<button type="button" class="register btn btn-primary" data-dismiss="modal">Register</button>
 			</div>
 		</div>
 	</div>
+</div>
