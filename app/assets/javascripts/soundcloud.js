@@ -36,11 +36,17 @@ $(window).on('load', function(){
 			tracks.forEach(function(track){
 				// console.log(track['permalink_url'])
 				SC.oEmbed(track['permalink_url'], { maxheight: '125', maxwidth: '350'}, function(embed) {
-					$('ul#results').append('<li class=\"results\">' + embed['html'] + '<button class=\"save btn-sm\">SAVE</button></li>')
+					$('ul#results').append('<li class=\"results\">' + embed['html'] + '<button id=\"' + track['stream_url'] + '\" class=\"save btn-sm\">SAVE</button></li>')
 				});
 			});
-
 		});
+
+		$('ul#results').on('click', function(event){
+			if (event.target.id != 'results') {
+				var user_id = $('.user').attr('id');
+				$.ajax({url: 'http://localhost:3000/users/' + user_id + '/sounds', type: 'POST', data: {url: event.target.id} });
+			}
+		})
 
 	});
 });

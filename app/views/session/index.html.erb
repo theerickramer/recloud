@@ -9,7 +9,7 @@
 		<form action="/session" method="POST">
 			<input type="hidden" name="_method" value="delete">
 			<button class="login btn btn-primary"><span class="glyphicon glyphicon-user"></span>  Logout</button>
-		<h4 class="user"><%= @user.user_name %></h4>
+		<h4 class="user" id="<%= @user.id %>"><%= @user.user_name %></h4>
 		</form>
 		<% end %>
 		</div> <!-- button -->
