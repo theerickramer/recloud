@@ -1,8 +1,8 @@
 $(window).on('load', function(){
 
 	SC.initialize({
-		client_id: "9eb06ad38e248d5444a8f7b12669840a",
-		redirect_uri: "/soundcloud.html",
+		client_id: "58dfe88109fa90d78bd48175c157199d",
+		// redirect_uri: "/soundcloud.html",
 	});
 
 	$('i.glyphicon-search').on('click', function(){
@@ -53,13 +53,18 @@ $(window).on('load', function(){
 		$('ul#results').sortable()
 
 		$('.deck').droppable({
-			drop: function(event, ui) {
+			over: function(event, ui){
+				$(this).parent().css('box-shadow', 'inset 0px 0px 50px 50px rgba(0, 255, 255, 0.5)');
+			},
+
+			out: function(event, ui){
+				$(this).parent().css('box-shadow', '');
+			},
+
+			drop: function(event, ui){
 				console.log('dropped')
 				var img = ui.draggable.children()[0]
-				console.log(this)
-				console.log(event)
-				console.log(event.target)
-
+				$(this).parent().css('box-shadow', '');
 				$(this).css('background-image', 'url(\"' + $(img).attr('src') + '\")')
 			}
 		})
