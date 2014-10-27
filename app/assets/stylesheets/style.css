@@ -95,6 +95,17 @@ button.save{
   transform: translateY(-50%);
 }
 
+.deck_pin{
+	background-color: black;
+	height: 15px;
+	width: 15px;
+	border-radius: 100%;
+	margin: 0 auto;
+	position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 .transport{
 	color: black;
 	font-size: 30px;
@@ -102,8 +113,9 @@ button.save{
 }
 
 div.embed{
-  width: 250px;
-  height: 100px;
+	/*width: 300px;*/
+  width: 220px;
+  height: 150px;
   display: inline-block;  
 }
 
@@ -113,6 +125,11 @@ iframe{
   top: 50%;  
 }
 
+img {
+	height: 150px;
+	width: 150px;
+	/*display: none;*/
+}
 /*.surface_center{
 	height: 33%;
 	width: 33%;

@@ -34,8 +34,7 @@ $(window).on('load', function(){
 // list of widgets
 		SC.get('/tracks', { q: $('input.search').val(), limit: '12' }, function(tracks) {
 			tracks.forEach(function(track){
-				console.log(track)
-				SC.oEmbed(track['permalink_url'], { maxheight: '100', maxwidth: '250'}, function(embed) {
+				SC.oEmbed(track['permalink_url'], { maxheight: '150', maxwidth: '220'}, function(embed) {
 					var template = _.template($('#sc_template').html());
 					var image = track.artwork_url || track.user.avatar_url;
 					var li = template({image: image, embed: embed['html'], stream: track['stream_url']});
@@ -51,5 +50,18 @@ $(window).on('load', function(){
 			}
 		})
 
+		$('ul#results').sortable()
+
+		$('.deck').droppable({
+			drop: function(event, ui) {
+				console.log('dropped')
+				var img = ui.draggable.children()[0]
+				console.log(this)
+				console.log(event)
+				console.log(event.target)
+
+				$(this).css('background-image', 'url(\"' + $(img).attr('src') + '\")')
+			}
+		})
 	});
 });
