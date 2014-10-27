@@ -24,6 +24,7 @@
 //= require ./backbone/collections/SoundCollection
 // require ./backbone/router.js
 //= require ./backbone/app.js
+//= require ./soundcloud.js
 
 
 // require_tree .

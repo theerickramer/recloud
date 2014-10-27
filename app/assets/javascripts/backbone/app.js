@@ -13,10 +13,6 @@ $('input.search').on('keyup', function(e){
 	} 
 })
 
-$('.glyphicon-search').on('click', function(){
-	
-})
-
 $('ul.nav').on('click', function(event){
 	$('.active').toggleClass('active')
 	$(event.target).parent().toggleClass('active');

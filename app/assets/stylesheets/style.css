@@ -7,7 +7,7 @@ body {
 }
 
 .cloud {
-	top: 10px;
+	top: 13px;
 /*  -webkit-mask-image: url(http://f.cl.ly/items/131E0X1b1i0X1s263R00/a.png);
 
   -moz-mask-image: url(http://f.cl.ly/items/131E0X1b1i0X1s263R00/a.png);
@@ -46,7 +46,77 @@ button.login {
 
 .surface {
 	background-color: silver;
+/*	margin-left: 17px;
+	margin-right: 17px;*/
+	height: 350px;
+}
+
+/*.surface_container{
 	margin-left: 17px;
 	margin-right: 17px;
-	height: 300px;
 }
+*/
+ul#results {
+	list-style-type: none;
+}
+
+li.results{
+	display: inline;
+	margin-left: 20px;
+	/*margin-bottom: 15px;*/
+}
+
+button.save{
+	color: white;
+	font-size: 10px;
+	margin: 5px;
+	vertical-align: middle;
+}
+
+.deck {
+	background-color: black;
+	height: 250px;
+	width: 250px;
+/*	height: 33%;
+	width: 33%;*/
+	border-radius: 100%;
+	margin: 50px;
+}
+
+.transport{
+	color: black;
+	font-size: 30px;
+}
+
+/*.surface_center{
+	height: 33%;
+	width: 33%;
+}*/
+
+/*.surface_right {
+	background-color: black;
+	height: 250px;
+	width: 250px;*/
+/*	height: 33%;
+	width: 33%;*/
+/*	border-radius: 100%;
+	margin: 50px;
+}*/
+
+/*.surface_center{
+	height: 300px;
+	padding-top: 250px;
+}
+
+.transport_left, .transport_right {
+	text-align: center;
+	display: inline-block;
+}
+
+.transport_left{
+	float: left;
+}
+
+.transport_right{
+	float: right;
+}*/
