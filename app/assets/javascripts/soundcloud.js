@@ -50,9 +50,9 @@ $(window).on('load', function(){
 			}
 		})
 
-		$('ul#results').sortable()
+		$('ul#results').sortable();
 
-		$('.deck').droppable({
+		$('.deck_left').droppable({
 			over: function(event, ui){
 				$(this).parent().css('box-shadow', 'inset 0px 0px 50px 50px rgba(0, 255, 255, 0.5)');
 			},
@@ -62,10 +62,47 @@ $(window).on('load', function(){
 			},
 
 			drop: function(event, ui){
-				console.log('dropped')
-				var img = ui.draggable.children()[0]
+				console.log(ui.draggable.children()[2])
+				var img = ui.draggable.children()[0];
+				var stream = ui.draggable.children()[2];
 				$(this).parent().css('box-shadow', '');
-				$(this).css('background-image', 'url(\"' + $(img).attr('src') + '\")')
+				$(this).css('background-image', 'url(\"' + $(img).attr('src') + '\")');
+
+				SC.stream($(stream).attr('id'), function(sound1){
+					$('.transport1.glyphicon-play').on('click', function(){
+							sound1.play();
+						});
+					$('.transport1.glyphicon-pause').on('click', function(){
+							sound1.pause();
+					})
+				})
+			}
+		})
+
+		$('.deck_right').droppable({
+			over: function(event, ui){
+				$(this).parent().css('box-shadow', 'inset 0px 0px 50px 50px rgba(0, 255, 255, 0.5)');
+			},
+
+			out: function(event, ui){
+				$(this).parent().css('box-shadow', '');
+			},
+
+			drop: function(event, ui){
+				console.log(ui.draggable.children()[2])
+				var img = ui.draggable.children()[0];
+				var stream = ui.draggable.children()[2];
+				$(this).parent().css('box-shadow', '');
+				$(this).css('background-image', 'url(\"' + $(img).attr('src') + '\")');
+
+				SC.stream($(stream).attr('id'), function(sound2){
+					$('.transport2.glyphicon-play').on('click', function(){
+							sound2.play();
+						});
+					$('.transport2.glyphicon-pause').on('click', function(){
+							sound2.pause();
+					})
+				})
 			}
 		})
 	});

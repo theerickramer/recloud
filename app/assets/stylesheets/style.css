@@ -73,7 +73,7 @@ button.save{
 	vertical-align: middle;
 }
 
-.deck {
+.deck_left, .deck_right {
 	background-color: black;
 	height: 250px;
 	width: 250px;
@@ -106,7 +106,7 @@ button.save{
   transform: translateY(-50%);
 }
 
-.transport{
+.transport1, .transport2{
 	color: black;
 	font-size: 30px;
 	margin-top: 225px;
