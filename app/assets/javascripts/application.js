@@ -17,6 +17,8 @@
 //= require ./libraries/underscore
 //= require ./libraries/backbone
 
+//= require ./templates/settings.js
+
 //= require ./backbone/models/UserModel
 //= require ./backbone/models/SoundModel
 //= require ./backbone/views/SoundView
@@ -25,6 +27,5 @@
 // require ./backbone/router.js
 //= require ./backbone/app.js
 //= require ./soundcloud.js
-
 
 // require_tree .

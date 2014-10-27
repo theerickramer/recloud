@@ -80,12 +80,37 @@ button.save{
 /*	height: 33%;
 	width: 33%;*/
 	border-radius: 100%;
-	margin: 50px;
+	margin: 0 auto;
+	margin-top: 50px;
+}
+
+.deck_inner{
+	background-color: white;
+	height: 75px;
+	width: 75px;
+	border-radius: 100%;
+	margin: 0 auto;
+	position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .transport{
 	color: black;
 	font-size: 30px;
+	margin-top: 225px;
+}
+
+div.embed{
+  width: 250px;
+  height: 100px;
+  display: inline-block;  
+}
+
+iframe{
+  position: relative;
+  margin: -33px auto 0 auto;
+  top: 50%;  
 }
 
 /*.surface_center{

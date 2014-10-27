@@ -34,9 +34,12 @@ $(window).on('load', function(){
 // list of widgets
 		SC.get('/tracks', { q: $('input.search').val(), limit: '12' }, function(tracks) {
 			tracks.forEach(function(track){
-				// console.log(track['permalink_url'])
-				SC.oEmbed(track['permalink_url'], { maxheight: '125', maxwidth: '350'}, function(embed) {
-					$('ul#results').append('<li class=\"results\">' + embed['html'] + '<button id=\"' + track['stream_url'] + '\" class=\"save btn-sm\">SAVE</button></li>')
+				console.log(track)
+				SC.oEmbed(track['permalink_url'], { maxheight: '100', maxwidth: '250'}, function(embed) {
+					var template = _.template($('#sc_template').html());
+					var image = track.artwork_url || track.user.avatar_url;
+					var li = template({image: image, embed: embed['html'], stream: track['stream_url']});
+					$('ul#results').append(li)
 				});
 			});
 		});
