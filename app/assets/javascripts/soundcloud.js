@@ -6,6 +6,7 @@ $(window).on('load', function(){
 	});
 
 	$('i.glyphicon-search').on('click', function(){
+		$('ul#results').empty()
 
 // list of images and urls
 // 	SC.get('/tracks', {q: $('input#search').val(), bpm: { from: 120} }, function(tracks) {
@@ -71,9 +72,11 @@ $(window).on('load', function(){
 				SC.stream($(stream).attr('id'), function(sound1){
 					$('.transport1.glyphicon-play').on('click', function(){
 							sound1.play();
+							$('.deck_left').addClass('spinning')
 						});
 					$('.transport1.glyphicon-pause').on('click', function(){
 							sound1.pause();
+							$('.deck_left').removeClass('spinning')
 					})
 				})
 			}
@@ -98,9 +101,11 @@ $(window).on('load', function(){
 				SC.stream($(stream).attr('id'), function(sound2){
 					$('.transport2.glyphicon-play').on('click', function(){
 							sound2.play();
+							$('.deck_right').addClass('spinning')
 						});
 					$('.transport2.glyphicon-pause').on('click', function(){
 							sound2.pause();
+							$('.deck_right').removeClass('spinning')
 					})
 				})
 			}
