@@ -5,6 +5,11 @@ $(window).on('load', function(){
 		// redirect_uri: "/soundcloud.html",
 	});
 
+	$('.glyphicon-music').on('click', function(){
+	var soundCollection = new RecloudApp.Collections.Sound(); 
+	var soundList = new RecloudApp.Views.SoundList({ el: $('ul.results'), collection: soundCollection})
+})	
+
 	$('i.glyphicon-search').on('click', function(){
 		$('ul#results').empty()
 
@@ -57,6 +62,7 @@ $(window).on('load', function(){
 					stream: button.id,
 					url: $($(button).parent()[0]).attr('id')
 				}
+				// $.ajax({url: '/users/' + user_id + '/sounds', type: 'POST', data: data });
 				$.ajax({url: '/users/' + user_id + '/sounds', type: 'POST', data: data });
 			}
 		})

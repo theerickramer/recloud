@@ -1,4 +1,4 @@
-var RecloudApp = RecloudApp || { Models: {}, Views: {}, Collections: {} }
+var RecloudApp = RecloudApp || { Models: {}, Views: {}, Collections: {}, Routers: {} };
 
 RecloudApp.Views.ModalView = Backbone.View.extend({
 

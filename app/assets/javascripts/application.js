@@ -25,7 +25,8 @@
 //= require ./backbone/models/SoundModel
 //= require ./backbone/collections/SoundCollection
 //= require ./backbone/views/SoundView
-// require ./backbone/router.js
+//= require ./backbone/views/SoundListView
+//= require ./backbone/router/router.js
 //= require ./backbone/app.js
 //= require ./soundcloud.js
 

@@ -1,8 +1,23 @@
-var RecloudApp = RecloudApp || { Models: {}, Views: {}, Collections: {} };
+var RecloudApp = RecloudApp || { Models: {}, Views: {}, Collections: {}, Routers: {} };
 
 RecloudApp.Views.Sound = Backbone.View.extend({
+	template: _.template($('#sound_template').html() ),
 
+	initialize: function(){
+		this.listenTo(this.model, 'change', this.render);
+		this.listenTo(this.model, 'destroy remove', this.remove);
+	},
+
+	events: {
+		'click .delete' : 'deleteSound'
+	},
+
+	deleteSound: function(){
+		this.model.destroy();
+	},
+
+	render: function(){
+		this.$el.html(this.template(this.model.attributes));
+		return this
+	}
 });	
-
-var soundCollection = new RecloudApp.Collections.Sound();
-var soundView = new RecloudApp.Views.Sound({ el: $('ul.results'), collection: soundCollection });

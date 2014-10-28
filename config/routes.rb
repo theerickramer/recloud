@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :sounds
   end
 
-  resources :sounds
+  # resources :sounds
 
   resources :users do 
     resources :sets

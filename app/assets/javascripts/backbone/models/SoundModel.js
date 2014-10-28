@@ -1,5 +1,5 @@
-var RecloudApp = RecloudApp || { Models: {}, Views: {}, Collections: {} };
+var RecloudApp = RecloudApp || { Models: {}, Views: {}, Collections: {}, Routers: {} };
 
 RecloudApp.Models.Sound = Backbone.Model.extend({
-	rootUrl: '/sounds'
+	// rootUrl: '/sounds'
 });

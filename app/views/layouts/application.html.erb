@@ -2,20 +2,22 @@
 <html>
 <head>
   <title>Recloud</title>
+	<script src="http://connect.soundcloud.com/sdk.js"></script>
+	<script type="text/template" id="sc_template">
+		<li class="results" id="{{ url }}"><img class="album" id="{{ artist }}" src="{{ image }}"><div class="embed">{{ embed }}</div><button id="{{ stream }}" class="save btn-sm"><i class="glyphicon glyphicon-music" id="{{ title }}"></i><i class="glyphicon glyphicon-plus"></i></button></li>
+	</script>
+	<script type="text/template" id="sound_template">
+		<li class="results" id="{{ url }}"><img class="album" id="{{ artist }}" src="{{ image }}"><div class="embed">{{ embed }}</div><button id="{{ stream }}" class="delete btn-sm"><i class="glyphicon glyphicon-remove" id="{{ id }}"></i></button></li>
+	</script>
  		<link href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/slate/bootstrap.min.css" rel="stylesheet">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </head>
 <body>
 
 <%= yield %>
 
 </body>
- 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-	<script src="http://connect.soundcloud.com/sdk.js"></script>
-	<script type="text/template" id="sc_template">
-		<li class="results" id="{{ url }}"><img class="album" id="{{ artist }}" src="{{ image }}"><div class="embed">{{ embed }}</div><button id="{{ stream }}" class="save btn-sm"><i class="glyphicon glyphicon-music" id="{{ title }}"></i><i class="glyphicon glyphicon-plus"></i></button></li>
-	</script>
 </html>
