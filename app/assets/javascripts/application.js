@@ -21,10 +21,10 @@
 //= require ./templates/settings.js
 
 //= require ./backbone/models/UserModel
-//= require ./backbone/models/SoundModel
-//= require ./backbone/views/SoundView
 //= require ./backbone/views/ModalView
+//= require ./backbone/models/SoundModel
 //= require ./backbone/collections/SoundCollection
+//= require ./backbone/views/SoundView
 // require ./backbone/router.js
 //= require ./backbone/app.js
 //= require ./soundcloud.js

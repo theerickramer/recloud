@@ -139,6 +139,10 @@ img {
 	width: 150px;
 	/*display: none;*/
 }
+
+button.save {
+	background-color: red;
+}
 /*.surface_center{
 	height: 33%;
 	width: 33%;

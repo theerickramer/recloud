@@ -38,7 +38,7 @@ $(window).on('load', function(){
 				SC.oEmbed(track['permalink_url'], { maxheight: '150', maxwidth: '220'}, function(embed) {
 					var template = _.template($('#sc_template').html());
 					var image = track.artwork_url || track.user.avatar_url;
-					var li = template({image: image, embed: embed['html'], stream: track['stream_url']});
+					var li = template({url: track.permalink_url, image: image, title: track.title, artist: track.user.username, stream: track.uri, embed: embed.html});
 					$('ul#results').append(li)
 				});
 			});
@@ -47,7 +47,17 @@ $(window).on('load', function(){
 		$('ul#results').on('click', function(event){
 			if (event.target.id != 'results') {
 				var user_id = $('.user').attr('id');
-				$.ajax({url: 'http://localhost:3000/users/' + user_id + '/sounds', type: 'POST', data: {url: event.target.id} });
+				var button = event.target;
+				var widget = $(button).prev()[0];
+				var data = {
+					artist: $($(widget).prev()[0]).attr('id'),
+					title: $($(button).children()[0]).attr('id'),
+					image: $($(widget).prev()[0]).attr('src'),
+					embed: $(widget).html(),
+					stream: button.id,
+					url: $($(button).parent()[0]).attr('id')
+				}
+				$.ajax({url: '/users/' + user_id + '/sounds', type: 'POST', data: data });
 			}
 		})
 
