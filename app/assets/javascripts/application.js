@@ -20,6 +20,7 @@
 
 //= require ./templates/settings.js
 
+//= require ./soundcloud.js
 //= require ./backbone/models/UserModel
 //= require ./backbone/views/ModalView
 //= require ./backbone/models/SoundModel
@@ -28,6 +29,5 @@
 //= require ./backbone/views/SoundListView
 //= require ./backbone/router/router.js
 //= require ./backbone/app.js
-//= require ./soundcloud.js
 
 // require_tree .

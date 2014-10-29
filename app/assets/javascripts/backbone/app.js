@@ -29,7 +29,8 @@ RecloudApp.initialize = function(){
 	})
 
 	$('.glyphicon-music').on('click', function(){
-		console.log('click');
+		$('ul#results').empty()
+		
 		var soundList = new RecloudApp.Views.SoundList({ el: $('ul#results'), collection: soundCollection});
 		soundList.render();
 	})
