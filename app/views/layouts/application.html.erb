@@ -2,7 +2,6 @@
 <html>
 <head>
   <title>Recloud</title>
-  <link href='https://fonts.googleapis.com/css?family=Nosifer' rel='stylesheet' type='text/css'>
 	<script src="https://connect.soundcloud.com/sdk.js"></script>
 	<script type="text/template" id="sc_template">
 		<li class="results" id="{{ url }}"><img class="album" id="{{ artist }}" src="{{ image }}"><div class="embed">{{ embed }}</div><button id="{{ stream }}" class="save btn-sm"><i class="glyphicon glyphicon-music" id="{{ title }}"></i><i class="glyphicon glyphicon-plus"></i></button></li>
@@ -11,6 +10,7 @@
 		<li class="results" id="{{ url }}"><img class="album" id="{{ artist }}" src="{{ image }}"><div class="embed">{{ embed }}</div><button id="{{ stream }}" class="delete btn-sm"><i class="glyphicon glyphicon-remove" id="{{ id }}"></i></button></li>
 	</script>
  		<link href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/slate/bootstrap.min.css" rel="stylesheet">
+ 	<%= stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css?family=Nosifer' %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>

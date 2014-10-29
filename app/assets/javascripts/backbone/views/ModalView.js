@@ -15,7 +15,9 @@ RecloudApp.Views.ModalView = Backbone.View.extend({
 	newUser: function(){
 		var user_name = this.$el.find('input[name="user_name"]').val();
 		var password = this.$el.find('input[name="password"]').val();
-		
+		this.$el.find('input[name="user_name"]').val('');
+		this.$el.find('input[name="password"]').val('');
+
 		var user = new RecloudApp.Models.Users({
 			user_name: user_name,
 			password: password
@@ -25,16 +27,15 @@ RecloudApp.Views.ModalView = Backbone.View.extend({
 			if (response.status == 'User already exists'){
 				$('button.login').trigger('click')
 				$('div.error').text(response.status)
-			} else {
-				console.log(response)
-				$('.user').text('Greetings ' + response.user_name + '!')
-			}
+			} 
 		});
 	},
 
 	login: function(){
 		var user_name = this.$el.find('input[name="user_name"]').val();
 		var password = this.$el.find('input[name="password"]').val();
+		this.$el.find('input[name="user_name"]').val('');
+		this.$el.find('input[name="password"]').val('');
 
 		var user = new RecloudApp.Models.Users({
 			user_name: user_name,
@@ -47,14 +48,8 @@ RecloudApp.Views.ModalView = Backbone.View.extend({
 				$('div.error').text(response.status)
 			} else {
 				window.location.href = '/'
-				// $('.user').text('Greetings, ' + response.user_name + '!')
 			}
 		})
-	},
-
-	reset: function(){
-		this.$el.find('input[name="user_name"]').val('');
-		this.$el.find('input[name="password"]').val('');
 	}
 
 });
