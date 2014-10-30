@@ -6,7 +6,6 @@ var soundCollection;
 RecloudApp.initialize = function(){
 	var modalView = new RecloudApp.Views.ModalView({ el: $('#loginModal')});
 	soundCollection = new RecloudApp.Collections.Sound();
-	soundCollection.fetch();
 
 	// router = new RecloudApp.Routers.Sound();
 

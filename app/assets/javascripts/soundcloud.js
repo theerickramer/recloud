@@ -69,10 +69,10 @@ SC.get('/tracks', { q: $('input.search').val(), limit: '12' }, function(tracks) 
 
 $('ul#results').sortable();
 
-var destroyPrevSound = function(sound){
-		sound.destruct();
-		console.log('fuck')
-	}
+// var destroyPrevSound = function(sound){
+// 		sound.destruct();
+// 		console.log('fuck')
+// 	}
 
 $('.deck_left').droppable({
 	over: function(event, ui){
@@ -94,7 +94,6 @@ $('.deck_left').droppable({
 		SC.stream($(stream).attr('id'), function(sound1){	
 			var playing1 = false;
 			$('.transport1.glyphicon-play').on('click', function(){
-				destroyPrevSound(currentSound);
 
 				if (playing1 == false) {
 					currentSound = sound1;
