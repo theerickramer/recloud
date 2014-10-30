@@ -59,7 +59,8 @@ SC.get('/tracks', { q: $('input.search').val(), limit: '12' }, function(tracks) 
 						stream: button.id,
 						url: li.id
 					}
-					$.ajax({url: '/users/' + user_id + '/sounds', type: 'POST', data: data });
+					// $.ajax({url: '/users/' + user_id + '/sounds', type: 'POST', data: data });
+					soundCollection.create(data);
 				})
 			}
 		});

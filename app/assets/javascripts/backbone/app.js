@@ -6,6 +6,7 @@ var soundCollection;
 RecloudApp.initialize = function(){
 	var modalView = new RecloudApp.Views.ModalView({ el: $('#loginModal')});
 	soundCollection = new RecloudApp.Collections.Sound();
+	soundCollection.fetch();
 
 	// router = new RecloudApp.Routers.Sound();
 
@@ -29,7 +30,6 @@ RecloudApp.initialize = function(){
 
 	$('.glyphicon-music').on('click', function(){
 		$('ul#results').empty()
-		
 		var soundList = new RecloudApp.Views.SoundList({ el: $('ul#results'), collection: soundCollection});
 		soundList.render();
 	})

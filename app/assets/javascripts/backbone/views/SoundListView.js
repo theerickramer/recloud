@@ -3,7 +3,6 @@ var RecloudApp = RecloudApp || { Models: {}, Views: {}, Collections: {}, Routers
 RecloudApp.Views.SoundList = Backbone.View.extend({
 	initialize: function(){
 		this.listenTo(this.collection, 'change', this.render);
-		this.collection.fetch();
 	},
 
 	render: function(){
