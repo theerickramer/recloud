@@ -69,6 +69,11 @@ SC.get('/tracks', { q: $('input.search').val(), limit: '12' }, function(tracks) 
 
 $('ul#results').sortable();
 
+var destroyPrevSound = function(sound){
+		sound.destruct();
+		console.log('fuck')
+	}
+
 $('.deck_left').droppable({
 	over: function(event, ui){
 		$(this).parent().css('box-shadow', 'inset 0px 0px 50px 50px rgba(0, 255, 255, 0.5)');
@@ -82,17 +87,23 @@ $('.deck_left').droppable({
 		var img = ui.draggable.children()[0];
 		var stream = ui.draggable.children()[2];
 		$(this).parent().css('box-shadow', '');
-		$(this).css('background-image', 'url(\"' + $(img).attr('src') + '\")');
+		$(this).css('background-image', 'url(\"' + $(img).attr('src') + '\")');	
 
-		SC.stream($(stream).attr('id'), function(sound1){
+		var currentSound;
+
+		SC.stream($(stream).attr('id'), function(sound1){	
 			var playing1 = false;
 			$('.transport1.glyphicon-play').on('click', function(){
+				destroyPrevSound(currentSound);
+
 				if (playing1 == false) {
-					sound1.play();
+					currentSound = sound1;
+					currentSound.play();
 					playing1 = true;
-					console.log(playing1)
+					
 					$('.deck_left').addClass('spinning')
 				}
+				return currentSound;
 			});
 			$('.transport1.glyphicon-pause').on('click', function(){
 				if (playing1 == true) {

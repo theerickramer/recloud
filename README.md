@@ -1,28 +1,14 @@
-== README
+Recloud
+http://www.recloud.audio
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A Soundcloud powered DJ app.
 
-Things you may want to cover:
+Search Soundcloud, drag and drop sounds onto turntables, play at the same time.
 
-* Ruby version
+Using Ruby on Rails, Javascript, jQuery, Backbone.js, AJAX, & Bootstrap. 
 
-* System dependencies
+Trello: https://trello.com/b/6ZfcadoZ/recloud
 
-* Configuration
+ERD: http://s19.photobucket.com/user/mr_e_machine/media/Recloud_ERD.png.html
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Wireframe: http://s19.photobucket.com/user/mr_e_machine/media/Recloud_Wireframe.jpg.html?sort=3&o=1
