@@ -69,10 +69,13 @@ SC.get('/tracks', { q: $('input.search').val(), limit: '12' }, function(tracks) 
 
 $('ul#results').sortable();
 
-var current = {
-		sound1: null,
-		sound2: null
-	};
+var current1 = {
+	sound: null
+};
+
+var current2 = {
+	sound: null
+};
 
 $('.deck_left').droppable({
 	over: function(event, ui){
@@ -89,8 +92,8 @@ $('.deck_left').droppable({
 		$(this).parent().css('box-shadow', '');
 		$(this).css('background-image', 'url(\"' + $(img).attr('src') + '\")');	
 
-		if (current.sound1 != null){
-			current.sound1.destruct();
+		if (current1.sound != null){
+			current1.sound.destruct();
 		}
 
 		SC.stream($(stream).attr('id'), function(sound1){	
@@ -98,8 +101,9 @@ $('.deck_left').droppable({
 			$('.transport1.glyphicon-play').on('click', function(){
 
 				if (playing1 == false) {
-					current.sound1 = sound1;
-					current.sound1.play();
+					current1.sound = sound1;
+					console.log(current1.sound)
+					current1.sound.play();
 					$('.transport1.glyphicon-play').css('color', 'rgba(0, 255, 255, 0.5)');
 					playing1 = true;
 					$('.deck_left').addClass('spinning')
@@ -107,7 +111,7 @@ $('.deck_left').droppable({
 			});
 			$('.transport1.glyphicon-pause').on('click', function(){
 				if (playing1 == true) {
-					current.sound1.pause();
+					current1.sound.pause();
 					$('.transport1.glyphicon-play').css('color', '#000');
 					playing1 = false
 					$('.deck_left').removeClass('spinning')
@@ -132,8 +136,8 @@ $('.deck_right').droppable({
 		$(this).parent().css('box-shadow', '');
 		$(this).css('background-image', 'url(\"' + $(img).attr('src') + '\")');
 
-		if (current.sound2 != null){
-			current.sound2.destruct();
+		if (current2.sound != null){
+			current2.sound.destruct();
 		}
 
 		SC.stream($(stream).attr('id'), function(sound2){
@@ -141,8 +145,8 @@ $('.deck_right').droppable({
 
 				$('.transport2.glyphicon-play').on('click', function(){
 					if (playing2 == false) {
-						current.sound2 = sound2;
-						current.sound2.play();
+						current2.sound = sound2;
+						current2.sound.play();
 						$('.transport2.glyphicon-play').css('color', 'rgba(0, 255, 255, 0.5)');
 						playing2 = true;
 						$('.deck_right').addClass('spinning');
@@ -150,7 +154,7 @@ $('.deck_right').droppable({
 				});
 				$('.transport2.glyphicon-pause').on('click', function(){
 					if (playing2 == true) {
-						current.sound2.pause();
+						current2.sound.pause();
 						$('.transport2.glyphicon-play').css('color', '#000');
 						playing2 = false;
 						$('.deck_right').removeClass('spinning')
