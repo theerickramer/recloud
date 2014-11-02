@@ -46,6 +46,7 @@ SC.get('/tracks', { q: $('input.search').val(), limit: '12' }, function(tracks) 
 			var image = track.artwork_url || track.user.avatar_url;
 			var li = template({url: track.permalink_url, image: image, title: track.title, artist: track.user.username, stream: track.uri, embed: embed.html});
 			$('ul#results').append(li);
+			$('input.search').val('');
 			if (index == tracks.length - 1){
 				$('button.save').on('click', function(){
 					var user_id = $('.user').attr('id');
@@ -75,6 +76,11 @@ $('ul#results').sortable();
 // 		console.log('fuck')
 // 	}
 
+var current = {
+		sound1: null,
+		sound2: null
+	};
+
 $('.deck_left').droppable({
 	over: function(event, ui){
 		$(this).parent().css('box-shadow', 'inset 0px 0px 50px 50px rgba(0, 255, 255, 0.5)');
@@ -90,26 +96,27 @@ $('.deck_left').droppable({
 		$(this).parent().css('box-shadow', '');
 		$(this).css('background-image', 'url(\"' + $(img).attr('src') + '\")');	
 
-		var currentSound;
+		if (current.sound1 != null){
+			current.sound1.destruct();
+		}
 
 		SC.stream($(stream).attr('id'), function(sound1){	
 			var playing1 = false;
 			$('.transport1.glyphicon-play').on('click', function(){
 
 				if (playing1 == false) {
-					currentSound = sound1;
-					currentSound.play();
+					current.sound1 = sound1;
+					current.sound1.play();
+					$('.transport1.glyphicon-play').css('color', 'rgba(0, 255, 255, 0.5)');
 					playing1 = true;
-					
 					$('.deck_left').addClass('spinning')
 				}
-				return currentSound;
 			});
 			$('.transport1.glyphicon-pause').on('click', function(){
 				if (playing1 == true) {
-					sound1.pause();
+					current.sound1.pause();
+					$('.transport1.glyphicon-play').css('color', '#000');
 					playing1 = false
-					console.log(playing1)
 					$('.deck_left').removeClass('spinning')
 				}
 			});
@@ -132,22 +139,27 @@ $('.deck_right').droppable({
 		$(this).parent().css('box-shadow', '');
 		$(this).css('background-image', 'url(\"' + $(img).attr('src') + '\")');
 
+		if (current.sound2 != null){
+			current.sound2.destruct();
+		}
+
 		SC.stream($(stream).attr('id'), function(sound2){
 			var playing2 = false;
 
 				$('.transport2.glyphicon-play').on('click', function(){
 					if (playing2 == false) {
-						sound2.play();
+						current.sound2 = sound2;
+						current.sound2.play();
+						$('.transport2.glyphicon-play').css('color', 'rgba(0, 255, 255, 0.5)');
 						playing2 = true;
-						console.log(playing2)
 						$('.deck_right').addClass('spinning');
 					}
 				});
 				$('.transport2.glyphicon-pause').on('click', function(){
 					if (playing2 == true) {
-						sound2.pause();
+						current.sound2.pause();
+						$('.transport2.glyphicon-play').css('color', '#000');
 						playing2 = false;
-						console.log(playing2)
 						$('.deck_right').removeClass('spinning')
 					}
 				});
