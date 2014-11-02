@@ -3,7 +3,6 @@ $(window).on('load', function(){
 	SC.initialize({
 		// client_id: "58dfe88109fa90d78bd48175c157199d",
 		client_id: "9eb06ad38e248d5444a8f7b12669840a",
-		// redirect_uri: "/soundcloud.html",
 	});
 
 	$('.glyphicon-music').on('click', function(){
@@ -60,7 +59,6 @@ SC.get('/tracks', { q: $('input.search').val(), limit: '12' }, function(tracks) 
 						stream: button.id,
 						url: li.id
 					}
-					// $.ajax({url: '/users/' + user_id + '/sounds', type: 'POST', data: data });
 					soundCollection.create(data);
 				})
 			}
@@ -70,11 +68,6 @@ SC.get('/tracks', { q: $('input.search').val(), limit: '12' }, function(tracks) 
 });
 
 $('ul#results').sortable();
-
-// var destroyPrevSound = function(sound){
-// 		sound.destruct();
-// 		console.log('fuck')
-// 	}
 
 var current = {
 		sound1: null,
