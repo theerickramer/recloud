@@ -102,7 +102,6 @@ $('.deck_left').droppable({
 
 				if (playing1 == false) {
 					current1.sound = sound1;
-					console.log(current1.sound)
 					current1.sound.play();
 					$('.transport1.glyphicon-play').css('color', 'rgba(0, 255, 255, 0.5)');
 					playing1 = true;
