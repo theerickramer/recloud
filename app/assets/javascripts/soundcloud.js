@@ -119,11 +119,11 @@ $('.deck_left').droppable({
 			$('input.crossfade').on('change mousemove', function(){
 				var range = $(this).val();
 				if (range <= 0) {
-					current1.sound.setVolume(100)
-					current2.sound.setVolume(100 - Math.abs(range))
+					current1.sound.setVolume(100);
+					current2.sound.setVolume(100 - Math.abs(range));
 				} else {
-					current1.sound.setVolume(100 - range)
-					current2.sound.setVolume(100)	
+					current1.sound.setVolume(100 - range);
+					current2.sound.setVolume(100);	
 				}
 			})
 		});
