@@ -1,6 +1,8 @@
 var RecloudApp = RecloudApp || { Models: {}, Views: {}, Collections: {}, Routers: {} };
 
 RecloudApp.Views.Sound = Backbone.View.extend({
+	tagName: 'li',
+	className: 'results',
 	template: _.template($('#sound_template').html() ),
 
 	initialize: function(){

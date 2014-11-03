@@ -49,8 +49,18 @@ button.login {
 	background-color: silver;
 /*	margin-left: 17px;
 	margin-right: 17px;*/
-	height: 350px;
+	height: 320px;
 	text-align: center;
+}
+
+.crossfade {
+	background-color: silver;
+}
+
+input.crossfade {
+	width: 200px;
+	margin: 0 auto;
+	color: black;
 }
 
 /*.surface_container{
@@ -60,6 +70,9 @@ button.login {
 */
 ul#results {
 	list-style-type: none;
+	height: 180px;
+	width: 100%;
+	overflow: auto;
 }
 
 li.results{
@@ -118,7 +131,7 @@ button.save, button.delete {
 }
 
 .transport1, .transport2{
-	color: black;
+	color: grey;
 	font-size: 30px;
 	margin-top: 225px;
 }

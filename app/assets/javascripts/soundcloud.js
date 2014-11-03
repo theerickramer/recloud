@@ -38,9 +38,9 @@ $(window).on('load', function(){
 
 
 // list of widgets
-SC.get('/tracks', { q: $('input.search').val(), limit: '12' }, function(tracks) {
+SC.get('/tracks', { q: $('input.search').val(), limit: '24' }, function(tracks) {
 	tracks.forEach(function(track,index){
-		SC.oEmbed(track['permalink_url'], { maxheight: '150', maxwidth: '220'}, function(embed) {
+		SC.oEmbed(track['permalink_url'], { maxheight: '150', maxwidth: '200'}, function(embed) {
 			var template = _.template($('#sc_template').html());
 			var image = track.artwork_url || track.user.avatar_url;
 			var li = template({url: track.permalink_url, image: image, title: track.title, artist: track.user.username, stream: track.uri, embed: embed.html});
@@ -64,7 +64,7 @@ SC.get('/tracks', { q: $('input.search').val(), limit: '12' }, function(tracks) 
 			}
 		});
 	});
-
+});
 });
 
 $('ul#results').sortable();
@@ -162,5 +162,5 @@ $('.deck_right').droppable({
 			})
 	}
 })
-});
+
 });
