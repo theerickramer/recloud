@@ -5,6 +5,7 @@
 		<div class="auth col-md-1 col-md-offset-7">
 			<% if !session[:user_id] %>
 			<button class="login btn btn-primary" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-user"></span>  Login</button>
+			<h4 class="user"></h4>
 			<% else %>
 			<form action="/session" method="POST">
 				<input type="hidden" name="_method" value="delete">
@@ -89,7 +90,7 @@
 		</div>
 	</div>
 	<div class="row crossfade">
-			<input class="crossfade" type="range" min="-100" max="100">
+		<input class="crossfade" type="range" min="-100" max="100">
 	</div>
 </div> 
 

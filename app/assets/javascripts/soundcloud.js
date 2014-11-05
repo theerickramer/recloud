@@ -49,17 +49,23 @@ SC.get('/tracks', { q: $('input.search').val(), limit: '24' }, function(tracks) 
 			if (index == tracks.length - 1){
 				$('button.save').on('click', function(){
 					var user_id = $('.user').attr('id');
-					var button = this;
-					var li = $(this).closest('li')[0];
-					var data = {
-						artist: $(li).find('img').attr('id'),
-						title: $(li).find('img').attr('class'),
-						image: $(li).find('img').attr('src'),
-						embed: $(li).find('.embed').html(),
-						stream: button.id,
-						url: li.id
+					if (user_id != undefined){
+						var button = this;
+						var li = $(this).closest('li')[0];
+						var data = {
+							artist: $(li).find('img').attr('id'),
+							title: $(li).find('img').attr('class'),
+							image: $(li).find('img').attr('src'),
+							embed: $(li).find('.embed').html(),
+							stream: button.id,
+							url: li.id
+						}
+						soundCollection.create(data);
+						$(button).children().slice(1).detach();
+						$(button).css('background-color', 'green');
+					} else {
+						$('.user').text('Please login').css('color', 'red');	
 					}
-					soundCollection.create(data);
 				})
 			}
 		});
@@ -111,7 +117,7 @@ $('.deck_left').droppable({
 			$('.transport1.glyphicon-pause').on('click', function(){
 				if (playing1 == true) {
 					current1.sound.pause();
-					$('.transport1.glyphicon-play').css('color', '#000');
+					$('.transport1.glyphicon-play').css('color', 'grey');
 					playing1 = false
 					$('.deck_left').removeClass('spinning')
 				}
@@ -164,7 +170,7 @@ $('.deck_right').droppable({
 				$('.transport2.glyphicon-pause').on('click', function(){
 					if (playing2 == true) {
 						current2.sound.pause();
-						$('.transport2.glyphicon-play').css('color', '#000');
+						$('.transport2.glyphicon-play').css('color', 'grey');
 						playing2 = false;
 						$('.deck_right').removeClass('spinning')
 					}
