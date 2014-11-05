@@ -31710,7 +31710,6 @@ $(window).on('load', function(){
 	SC.initialize({
 		// client_id: "58dfe88109fa90d78bd48175c157199d",
 		client_id: "9eb06ad38e248d5444a8f7b12669840a",
-		// redirect_uri: "/soundcloud.html",
 	});
 
 	$('.glyphicon-music').on('click', function(){
@@ -31746,35 +31745,50 @@ $(window).on('load', function(){
 
 
 // list of widgets
-SC.get('/tracks', { q: $('input.search').val(), limit: '12' }, function(tracks) {
+SC.get('/tracks', { q: $('input.search').val(), limit: '24' }, function(tracks) {
 	tracks.forEach(function(track,index){
-		SC.oEmbed(track['permalink_url'], { maxheight: '150', maxwidth: '220'}, function(embed) {
+		SC.oEmbed(track['permalink_url'], { maxheight: '150', maxwidth: '200'}, function(embed) {
 			var template = _.template($('#sc_template').html());
 			var image = track.artwork_url || track.user.avatar_url;
 			var li = template({url: track.permalink_url, image: image, title: track.title, artist: track.user.username, stream: track.uri, embed: embed.html});
 			$('ul#results').append(li);
+			$('input.search').val('');
 			if (index == tracks.length - 1){
 				$('button.save').on('click', function(){
 					var user_id = $('.user').attr('id');
-					var button = this;
-					var li = $(this).closest('li')[0];
-					var data = {
-						artist: $(li).find('img').attr('id'),
-						title: $(li).find('img').attr('class'),
-						image: $(li).find('img').attr('src'),
-						embed: $(li).find('.embed').html(),
-						stream: button.id,
-						url: li.id
+					if (user_id != undefined){
+						var button = this;
+						var li = $(this).closest('li')[0];
+						var data = {
+							artist: $(li).find('img').attr('id'),
+							title: $(li).find('img').attr('class'),
+							image: $(li).find('img').attr('src'),
+							embed: $(li).find('.embed').html(),
+							stream: button.id,
+							url: li.id
+						}
+						soundCollection.create(data);
+						$(button).children().slice(1).detach();
+						$(button).css('background-color', 'green');
+					} else {
+						$('.user').text('Please login').css('color', 'red');	
 					}
-					$.ajax({url: '/users/' + user_id + '/sounds', type: 'POST', data: data });
 				})
 			}
 		});
 	});
-
+});
 });
 
 $('ul#results').sortable();
+
+var current1 = {
+	sound: null
+};
+
+var current2 = {
+	sound: null
+};
 
 $('.deck_left').droppable({
 	over: function(event, ui){
@@ -31789,26 +31803,42 @@ $('.deck_left').droppable({
 		var img = ui.draggable.children()[0];
 		var stream = ui.draggable.children()[2];
 		$(this).parent().css('box-shadow', '');
-		$(this).css('background-image', 'url(\"' + $(img).attr('src') + '\")');
+		$(this).css('background-image', 'url(\"' + $(img).attr('src') + '\")');	
 
-		SC.stream($(stream).attr('id'), function(sound1){
+		if (current1.sound != null){
+			current1.sound.destruct();
+		}
+
+		SC.stream($(stream).attr('id'), function(sound1){	
 			var playing1 = false;
 			$('.transport1.glyphicon-play').on('click', function(){
+
 				if (playing1 == false) {
-					sound1.play();
+					current1.sound = sound1;
+					current1.sound.play();
+					$('.transport1.glyphicon-play').css('color', 'rgba(0, 255, 255, 0.5)');
 					playing1 = true;
-					console.log(playing1)
 					$('.deck_left').addClass('spinning')
 				}
 			});
 			$('.transport1.glyphicon-pause').on('click', function(){
 				if (playing1 == true) {
-					sound1.pause();
+					current1.sound.pause();
+					$('.transport1.glyphicon-play').css('color', 'grey');
 					playing1 = false
-					console.log(playing1)
 					$('.deck_left').removeClass('spinning')
 				}
 			});
+			$('input.crossfade').on('change mousemove', function(){
+				var range = $(this).val();
+				if (range <= 0) {
+					current1.sound.setVolume(100);
+					current2.sound.setVolume(100 - Math.abs(range));
+				} else {
+					current1.sound.setVolume(100 - range);
+					current2.sound.setVolume(100);	
+				}
+			})
 		});
 	}
 });
@@ -31828,29 +31858,34 @@ $('.deck_right').droppable({
 		$(this).parent().css('box-shadow', '');
 		$(this).css('background-image', 'url(\"' + $(img).attr('src') + '\")');
 
+		if (current2.sound != null){
+			current2.sound.destruct();
+		}
+
 		SC.stream($(stream).attr('id'), function(sound2){
 			var playing2 = false;
 
 				$('.transport2.glyphicon-play').on('click', function(){
 					if (playing2 == false) {
-						sound2.play();
+						current2.sound = sound2;
+						current2.sound.play();
+						$('.transport2.glyphicon-play').css('color', 'rgba(0, 255, 255, 0.5)');
 						playing2 = true;
-						console.log(playing2)
 						$('.deck_right').addClass('spinning');
 					}
 				});
 				$('.transport2.glyphicon-pause').on('click', function(){
 					if (playing2 == true) {
-						sound2.pause();
+						current2.sound.pause();
+						$('.transport2.glyphicon-play').css('color', 'grey');
 						playing2 = false;
-						console.log(playing2)
 						$('.deck_right').removeClass('spinning')
 					}
 				});
 			})
 	}
 })
-});
+
 });
 var RecloudApp = RecloudApp || { Models: {}, Views: {}, Collections: {}, Routers: {} };
 
@@ -31922,11 +31957,13 @@ var RecloudApp = RecloudApp || { Models: {}, Views: {}, Collections: {}, Routers
 
 RecloudApp.Collections.Sound = Backbone.Collection.extend({
 	model: RecloudApp.Models.Sound,
-	url: '/users/1/sounds'
+	url: '/users/' + $('.user').attr('id') + '/sounds'
 });
 var RecloudApp = RecloudApp || { Models: {}, Views: {}, Collections: {}, Routers: {} };
 
 RecloudApp.Views.Sound = Backbone.View.extend({
+	tagName: 'li',
+	className: 'results',
 	template: _.template($('#sound_template').html() ),
 
 	initialize: function(){
@@ -31951,7 +31988,7 @@ var RecloudApp = RecloudApp || { Models: {}, Views: {}, Collections: {}, Routers
 
 RecloudApp.Views.SoundList = Backbone.View.extend({
 	initialize: function(){
-		this.listenTo(this.collection, 'add', this.render);
+		this.listenTo(this.collection, 'change', this.render);
 	},
 
 	render: function(){
@@ -32003,7 +32040,6 @@ RecloudApp.initialize = function(){
 
 	$('.glyphicon-music').on('click', function(){
 		$('ul#results').empty()
-		
 		var soundList = new RecloudApp.Views.SoundList({ el: $('ul#results'), collection: soundCollection});
 		soundList.render();
 	})
