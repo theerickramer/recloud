@@ -38,12 +38,12 @@ $(window).on('load', function(){
 
 
 // list of widgets
-SC.get('/tracks', { q: $('input.search').val(), limit: '24' }, function(tracks) {
+SC.get('/tracks', { q: $('input.search').val(), limit: '24' }).then(function(tracks) {
 	tracks.forEach(function(track,index){
-		SC.oEmbed(track['permalink_url'], { maxheight: '150', maxwidth: '200'}, function(embed) {
+		SC.oEmbed(track['permalink_url'], { maxheight: '150', maxwidth: '200'}).then(function(embed) {
 			var template = _.template($('#sc_template').html());
 			var image = track.artwork_url || track.user.avatar_url;
-			var li = template({url: track.permalink_url, image: image, title: track.title, artist: track.user.username, stream: track.uri, embed: embed.html});
+			var li = template({url: track.permalink_url, image: image, title: track.title, artist: track.user.username, stream: track.uri.split('soundcloud.com')[1], embed: embed.html});
 			$('ul#results').append(li);
 			$('input.search').val('');
 			if (index == tracks.length - 1){
@@ -99,10 +99,10 @@ $('.deck_left').droppable({
 		$(this).css('background-image', 'url(\"' + $(img).attr('src') + '\")');	
 
 		if (current1.sound != null){
-			current1.sound.destruct();
+			// current1.sound.destruct();
 		}
 
-		SC.stream($(stream).attr('id'), function(sound1){	
+		SC.stream($(stream).attr('id')).then(function(sound1){	
 			var playing1 = false;
 			$('.transport1.glyphicon-play').on('click', function(){
 
@@ -125,6 +125,7 @@ $('.deck_left').droppable({
 			$('input.crossfade').on('change mousemove', function(){
 				var range = $(this).val();
 				if (range <= 0) {
+					console.log(current1.sound)
 					current1.sound.setVolume(100);
 					current2.sound.setVolume(100 - Math.abs(range));
 				} else {
@@ -152,12 +153,11 @@ $('.deck_right').droppable({
 		$(this).css('background-image', 'url(\"' + $(img).attr('src') + '\")');
 
 		if (current2.sound != null){
-			current2.sound.destruct();
+			// current2.sound.destruct();
 		}
 
-		SC.stream($(stream).attr('id'), function(sound2){
+		SC.stream($(stream).attr('id')).then(function(sound2){
 			var playing2 = false;
-
 				$('.transport2.glyphicon-play').on('click', function(){
 					if (playing2 == false) {
 						current2.sound = sound2;
